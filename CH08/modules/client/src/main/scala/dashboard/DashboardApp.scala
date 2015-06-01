@@ -8,15 +8,16 @@ import scala.scalajs.js.JSApp
 object DashboardApp extends JSApp {
 
   def main(): Unit = {
-    val module = angular.createModule("twitter", Seq("ngRoute"))
+    val module = angular.createModule("dashboard", Seq("ngRoute"))
 
     module.controllerOf[DashboardCtrl]
 
     module.config { ($routeProvider: RouteProvider) =>
       $routeProvider
-        .when("/dashboard", Route(templateUrl = "/dashboard.html", controller = "dashboard.DashboardCtrl"))
+        .when("/dashboard", Route(templateUrl = "/assets/partials/dashboard.html", controller = "dashboard.DashboardCtrl"))
         .otherwise(Route(redirectTo = "/dashboard"))
     }
 
   }
+
 }

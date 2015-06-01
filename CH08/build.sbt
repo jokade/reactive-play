@@ -1,7 +1,7 @@
 import sbt.Project.projectToRef
 
 lazy val clients = Seq(client)
-lazy val scalaV = "2.11.5"
+lazy val scalaV = "2.11.6"
 
 lazy val root = (project in file(".")).settings(
   scalaVersion := scalaV,
@@ -22,5 +22,11 @@ lazy val client = (project in file("modules/client")).settings(
   libraryDependencies ++= Seq(
     "org.scala-js" %%% "scalajs-dom" % "0.8.0",
     "biz.enef" %%% "scalajs-angulate" % "0.2"
-  )
+  ),
+  jsDependencies ++= Seq(
+    "org.webjars" % "angularjs" % "1.3.15" / "angular.min.js",
+    "org.webjars" % "angularjs" % "1.3.15" / "angular-route.min.js" dependsOn "angular.min.js"
+  ),
+  skip in packageJSDependencies := false
+
 ).enablePlugins(ScalaJSPlugin, ScalaJSPlay)
